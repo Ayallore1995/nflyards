@@ -123,7 +123,13 @@ I plot the distribution of home and away and saw it basically had no difference
 
 <embed type="text/html" src="https://gist.github.com/f2cd7de45c81cca69fc04c151491ff89.git/" width="800" height="500">
 
-{% gist f2cd7de45c81cca69fc04c151491ff89 %}
+<details>
+  <summary>
+    Expand here for code (150 lines!)
+  </summary>
+  {% gist f2cd7de45c81cca69fc04c151491ff89 %}
+
+</details>
 
 
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
