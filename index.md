@@ -120,12 +120,9 @@ My first question was can I even standardise the direction? And will it affect t
 I plot the distribution of home and away and saw it basically had no difference
 
 
-<embed src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89.js" width="20" height="20"></embed>
+<script src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89.js" width="20" height="20"></script>
 
-
-
-
-
+<embed src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89" width="20" height="20"></embed>
 
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
  
