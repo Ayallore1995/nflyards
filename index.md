@@ -137,9 +137,9 @@ The code is given below
 <html>
 <style>
 details > summary {
-  background-color : #171fd8
+  background-color : # #415ef1 
   padding: 5px;
-  width: 400px;
+  width: 250px;
   border: none;
   cursor: pointer;
 }
