@@ -25,7 +25,10 @@ I don’t know, Let’s find out.
 ### 1. CRPS or Continuous Ranked Probability Score.
 
  Mathematically:  
-$ C = \frac{1}{199N} \sum_{m=1}^{N} \sum_{n=-99}^{99} (P(y \le n) -H(n - Y_m))^2$ 
+ 
+ ![image](https://user-images.githubusercontent.com/77883553/161541788-a5af4f5c-8e52-4694-aa1a-fcebf2454cc7.png)
+
+$C = \frac{1}{199N} \sum_{m=1}^{N} \sum_{n=-99}^{99} (P(y \le n) -H(n - Y_m))^2$ 
 
 I'll admit it looks scary, It is not a common metric,
 Let me explain some of the terms, first why 199? 199 is the number of buckets(classes) we have, on each play the team can eihter gain 99 yards, lose 99 yards or gain nothing
