@@ -31,19 +31,19 @@ I don’t know, Let’s find out.
 I'll admit it looks scary, It is not a common metric,
 Let me explain some of the terms, first why 199? 199 is the number of buckets(classes) we have, on each play the team can eihter gain 99 yards, lose 99 yards or gain nothing so thats 99+1+99= 199
 
-*m=1 to N* is just iterating over all the plays in the dataset,
+***m=1 to N*** is just iterating over all the plays in the dataset,
 
-*n=-99 to 99* represents the yards lost to yards gained -99 representing 99 yards lost (or team loses the ball and the opponent gets a touchdown)  
+***n=-99 to 99*** represents the yards lost to yards gained -99 representing 99 yards lost (or team loses the ball and the opponent gets a touchdown)  
 
-*P(y<=n)*  represents the cummulative distributive function,
+***P(y<=n)***  represents the cummulative distributive function,
 
-*H(n - Y_m))* represents the the Heaviside step function, 
-*H(x)=1* for *x>=0* and 0 otherwise
+***H(n - Y_m))*** represents the the Heaviside step function, 
+***H(x)=1 for x>=0 and 0 otherwise***
 
 let us see for 1 prediction how it would play out. 
 Say our prediction is 5 yards will be gained. 
 
-Y_m=5 in this case
+***Y_m=5*** in this case
 
 so our CDF and Heaviside step function will look like
 
