@@ -124,10 +124,9 @@ I plot the distribution of home and away and saw it basically had no difference
 
 <embed type="text/html" src="https://gist.github.com/f2cd7de45c81cca69fc04c151491ff89.git/" width="800" height="500">
 
-code {
-  white-space : pre-wrap !important;
-}
-<code>
+
+
+`python
 def preprocess():
     
     '''Preprocess and clean some of the data, assigning  values to missing values based on the feature and updating Team Abbrevations to remain consistent 
@@ -272,9 +271,9 @@ def preprocess():
         data.loc[data['HomeTeamAbbr']==k,'HomeTeamAbbr']=v
 
     return data.columns[data.isna().any()==True].values
-</code>
+`
 
-<embed 
+<iframe 
     width="100%"
     height="350"    
     src="data:text/html;charset=utf-8,
