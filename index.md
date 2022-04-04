@@ -7,13 +7,10 @@ Basic rules of the game, 11 players on the field for each time. One team has pos
 So, the basic gist of Rushing play is that one player called The Rusher is one who is tasked to carry the ball as far as possible. The remaining 10 offensive players look to clear a path for the Rusher. The defensive team looks to block or steal the ball from the rusher.
 Here’s an example. It happens really fast. The defensive and offensive schemes are very complex. There’s a lot of trickery and bluffing involved to confuse the opponents (and invariably us in the process).
 
-<img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
 
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
-![Alt Text](rush.gif)
-
-<img src="rush.gif" width="600" height="200" />
+<img src="rush.gif" width="600" height="400" align=center />
 
  
 ## The Competition
