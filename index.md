@@ -10,7 +10,7 @@ Here’s an example. It happens really fast. The defensive and offensive schemes
 
 
 <p align="center">
-  <img width="460" height="300" src="rush.gif">
+  <img width="500" height="350" src="rush.gif">
 </p>
 
  
