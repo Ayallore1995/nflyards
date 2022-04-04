@@ -137,10 +137,11 @@ The code is given below
 <html>
 <style>
 details > summary {
-  background-color : # #415ef1 
-  padding: 5px;
+  padding: 4px;
   width: 250px;
+  background-color: #eeeeee;
   border: none;
+  box-shadow: 1px 1px 2px #bbbbbb;
   cursor: pointer;
 }
 </style>
