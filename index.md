@@ -122,7 +122,13 @@ I plot the distribution of home and away and saw it basically had no difference
 
 <script src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89.js" width="20" height="20"></script>
 
-<iframe src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89" width="20" height="20"></iframe>
+<iframe 
+    width="100%"
+    height="350"    
+    src="data:text/html;charset=utf-8,
+    <head><base target='_blank' /></head>
+    <body><script src='https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89'></script>
+    </body>">
 
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
  
