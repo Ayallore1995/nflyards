@@ -28,45 +28,26 @@ I don’t know, Let’s find out.
  
  ![image](https://user-images.githubusercontent.com/77883553/161541788-a5af4f5c-8e52-4694-aa1a-fcebf2454cc7.png)
 
-$C = \frac{1}{199N} \sum_{m=1}^{N} \sum_{n=-99}^{99} (P(y \le n) -H(n - Y_m))^2$ 
-
 I'll admit it looks scary, It is not a common metric,
-Let me explain some of the terms, first why 199? 199 is the number of buckets(classes) we have, on each play the team can eihter gain 99 yards, lose 99 yards or gain nothing
+Let me explain some of the terms, first why 199? 199 is the number of buckets(classes) we have, on each play the team can eihter gain 99 yards, lose 99 yards or gain nothing so thats 99+1+99= 199
 
-$99+1+99= 199$
+*m=1 to N* is just iterating over all the plays in the dataset,
 
-$m=1~to~N$ is just iterating over all the plays in the dataset,
+*n=-99 to 99* represents the yards lost to yards gained -99 representing 99 yards lost (or team loses the ball and the opponent gets a touchdown)  
 
-$n=-99~to~99$ represents the yards lost to yards gained -99 representing 99 yards lost (or team loses the ball and the opponent gets a touchdown)  
+*P(y<=n)*  represents the cummulative distributive function,
 
-$P(y\le n)$  represents the cummulative distributive function,
-
-$H(n - Y_m))$ represents the the Heaviside step function, 
-$H(x)=1$ for $x\ge0$ and $0$ otherwise
+*H(n - Y_m))* represents the the Heaviside step function, 
+*H(x)=1* for *x>=0* and 0 otherwise
 
 let us see for 1 prediction how it would play out. 
 Say our prediction is 5 yards will be gained. 
 
-$Y_m=5$ in this case
+Y_m=5 in this case
 
-so our CDF and Heaviside step function will look like (for a good prediction)
+so our CDF and Heaviside step function will look like
 
-
-$P(y\le-99)=0.001~~~~~~~~~~~~~~~~~H(-99-5)=0 $
-
-. . .
-
-$P(y\le0)=0.1~~~~~~~~~~~~~~~~~~~~~~~~~~H(0- 5)=0 $
-
-. . .
-
-$P(y\le5)=0.98~~~~~~~~~~~~~~~~~~~~~~~~H(5- 5)=1$
-
-$P(y\le6)=1.0~~~~~~~~~~~~~~~~~~~~~~~~~~H(6- 5)=1$
-
-. . . 
-
-$P(y\le99)=1.0~~~~~~~~~~~~~~~~~~~~~~~~H(99- 5)=1$
+![image](https://user-images.githubusercontent.com/77883553/161542745-a9c55f22-c441-445d-91de-e1df4b4ff5c0.png)
 
  Another way to understand would be that it is the mean square error (MSE)of the predicted Cumulative density function (CDF) and the true Cumulative density function (CDF). 
  The Continuous Ranked Probability Score (CRPS) generalizes the Mean Absolute Error (MAE) to the case of probabilistic forecasts. 
