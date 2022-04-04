@@ -123,6 +123,26 @@ I plot the distribution of home and away and saw it basically had no difference
 
 <embed type="text/html" src="https://gist.github.com/f2cd7de45c81cca69fc04c151491ff89.git/" width="800" height="500">
 
+<html>
+<style>
+details > summary {
+  padding: 4px;
+  width: 200px;
+  background-color: #eeeeee;
+  border: none;
+  box-shadow: 1px 1px 2px #bbbbbb;
+  cursor: pointer;
+}
+
+details > p {
+  background-color: #eeeeee;
+  padding: 4px;
+  margin: 0;
+  box-shadow: 1px 1px 2px #bbbbbb;
+}
+</style>
+<body>
+
 <details>
   <summary>
     Expand here for code (150 lines!)
