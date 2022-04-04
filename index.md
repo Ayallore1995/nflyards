@@ -128,7 +128,6 @@ I plot the distribution of home and away and saw it basically had no difference
 details > summary {
   padding: 5px;
   width: 400px;
-  background-color: #099c63;
   border: none;
   cursor: pointer;
 }
