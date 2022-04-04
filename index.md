@@ -126,7 +126,7 @@ I plot the distribution of home and away and saw it basically had no difference
 
 
 
-<iframe "
+<iframe src="
 def preprocess():
     
     '''Preprocess and clean some of the data, assigning  values to missing values based on the feature and updating Team Abbrevations to remain consistent 
@@ -271,7 +271,7 @@ def preprocess():
         data.loc[data['HomeTeamAbbr']==k,'HomeTeamAbbr']=v
 
     return data.columns[data.isna().any()==True].values
-" width =200 height=200
+" width =800 height=500
 </iframe>
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
  
