@@ -8,7 +8,6 @@ So, the basic gist of Rushing play is that one player called The Rusher is one w
 Here’s an example. It happens really fast. The defensive and offensive schemes are very complex. There’s a lot of trickery and bluffing involved to confuse the opponents (and invariably us in the process).
 
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
 <p align="center">
   <img width="460" height="300" src="rush.gif">
