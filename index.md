@@ -121,12 +121,23 @@ My first question was can I even standardise the direction? And will it affect t
 I plot the distribution of home and away and saw it basically had no difference
 
 
-<embed type="text/html" src="https://gist.github.com/f2cd7de45c81cca69fc04c151491ff89.git/" width="800" height="500">
+
+
+Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
+ 
+
+Changes made to standardise:
+- Changing Direction of the plays to the Left if it is right. And switching the Coordinates, orientaion and other features dependent on the Direction of Play.
+- Changing the possession team as always Home team and the defense team as away
+- Creating a new feature Rusher to indicate if the player is the rusher or not
+- Standardising the yardline
+- Converting Direction from degrees to radians.
+The code is given below 
 
 <html>
 <style>
 details > summary {
-  color : #171fd8
+  background-color : #171fd8
   padding: 5px;
   width: 400px;
   border: none;
@@ -141,19 +152,6 @@ details > summary {
   </summary>
   {% gist f2cd7de45c81cca69fc04c151491ff89 %}
 </details>
-
-
-Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
- 
-
-Changes made to standardise:
-- Changing Direction of the plays to the Left if it is right. And switching the Coordinates, orientaion and other features dependent on the Direction of Play.
-- Changing the possession team as always Home team and the defense team as away
-- Creating a new feature Rusher to indicate if the player is the rusher or not
-- Standardising the yardline
-- Converting Direction from degrees to radians.
-The code is given below 
-
  
 
 Now the data is all cleaned up and looking handsome, let’s see the basic stats 
