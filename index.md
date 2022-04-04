@@ -119,9 +119,8 @@ As I noticed from the data and after doing research on the other solutions, I re
 My first question was can I even standardise the direction? And will it affect the Yards variable.
 I plot the distribution of home and away and saw it basically had no difference
 
-<iframe src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89"></iframe>  
 
-<script src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89.js"></script>
+<script src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89.js" width="200" height="200"></script>
 
 
 ```python
