@@ -36,7 +36,7 @@ I don’t know, Let’s find out.
  ![image](https://user-images.githubusercontent.com/77883553/161541788-a5af4f5c-8e52-4694-aa1a-fcebf2454cc7.png)
 
 I'll admit it looks scary, It is not a common metric,
-Let me explain some of the terms, first why 199? 199 is the number of buckets(classes) we have, on each play the team can eihter gain 99 yards, lose 99 yards or gain nothing so thats 99+1+99= 199
+Let me explain some of the terms, first why 199? 199 is the number of buckets(classes) we have, on each play the team can eihter gain 99 yards, lose 99 yards or gain nothing(0th class) so thats 99+1+99= 199
 
 ***m=1 to N*** is just iterating over all the plays in the dataset,
 
