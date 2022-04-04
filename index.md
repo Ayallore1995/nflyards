@@ -6,6 +6,10 @@ What is Football? Good question, even experts (on the internet) get quite heated
 Basic rules of the game, 11 players on the field for each time. One team has possession and the other team tries to stop the offense from gaining ground. The offensive team has to gain 10 yards every 4 tries (called Downs). How do the teams achieve that? There are 2-3 ways, we will focus on Rushing plays. These account for more than 30% of the plays in the NFL. 
 So, the basic gist of Rushing play is that one player called The Rusher is one who is tasked to carry the ball as far as possible. The remaining 10 offensive players look to clear a path for the Rusher. The defensive team looks to block or steal the ball from the rusher.
 Here’s an example. It happens really fast. The defensive and offensive schemes are very complex. There’s a lot of trickery and bluffing involved to confuse the opponents (and invariably us in the process).
+
+<img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
+
+<img src="https://media.giphy.com/media/mBwPxbGLGNjpLSpenx/giphy.gif" width="200" height="400" />
  
 ## The Competition
 
