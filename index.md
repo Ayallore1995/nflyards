@@ -125,6 +125,9 @@ I plot the distribution of home and away and saw it basically had no difference
 <embed type="text/html" src="https://gist.github.com/f2cd7de45c81cca69fc04c151491ff89.git/" width="800" height="500">
 
 
+{% gist f2cd7de45c81cca69fc04c151491ff89 %}
+
+
 
 <iframe src="
 def preprocess():
