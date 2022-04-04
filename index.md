@@ -119,15 +119,12 @@ As I noticed from the data and after doing research on the other solutions, I re
 My first question was can I even standardise the direction? And will it affect the Yards variable.
 I plot the distribution of home and away and saw it basically had no difference
 
-
-<script src="https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89.js" width="20" height="20"></script>
-
 <iframe 
     width="100%"
     height="350"    
     src="data:text/html;charset=utf-8,
     <head><base target='_blank' /></head>
-    <body><script src='https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89'></script>
+    <body><script src='https://gist.github.com/f2cd7de45c81cca69fc04c151491ff89.git'></script>
     </body>">
 
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
