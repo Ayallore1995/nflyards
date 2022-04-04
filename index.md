@@ -55,9 +55,9 @@ so our CDF and Heaviside step function will look like
 
 ### 2. Mean Square error:
 
-#### I tried to formulate it as a regression problem, but opted for CRPS since CRPS gave a way to interpret the output of the resultant model (MLP) as the discrete probability mass function and train to converge to our desired outputs.
+I tried to formulate it as a regression problem, but opted for CRPS since CRPS gave a way to interpret the output of the resultant model (MLP) as the discrete probability mass function and train to converge to our desired outputs.
 
-### As luck would have it, CRPS also gave better convergence compared to MSE. So a win-win in my books.
+As luck would have it, CRPS also gave better convergence compared to MSE. So a win-win in my books.
 
 
 ## Possible Issues: 
@@ -119,7 +119,7 @@ As I noticed from the data and after doing research on the other solutions, I re
 My first question was can I even standardise the direction? And will it affect the Yards variable.
 I plot the distribution of home and away and saw it basically had no difference
 
-<iframe 
+<object 
     width="100%"
     height="350"    
     src="data:text/html;charset=utf-8,
