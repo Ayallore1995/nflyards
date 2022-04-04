@@ -10,7 +10,9 @@ Here’s an example. It happens really fast. The defensive and offensive schemes
 
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
-<img src="rush.gif" width="600" height="400" class="center" />
+<p align="center">
+  <img width="460" height="300" src="rush.gif">
+</p>
 
  
 ## The Competition
