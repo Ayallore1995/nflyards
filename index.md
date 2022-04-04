@@ -82,7 +82,7 @@ The following features are included in the dataset:
 -   **Yards** 
 -   Position, StadiumType , Turf,  GameWeather
 
-**Target Variable is *Yards* **
+** Target Variable is *Yards* **
 
 ## Research:
 I went through the available Kaggle code solutions. The most impressive was the Winner’s solution. It used just 5 of the given variables (the relative distance and velocity)and used an ingenious method to win the competition. The rest of the competitors weren’t half bad! And I took a lot of inspiration and saw what worked and what didn’t. *Transfer Learning* if you may. 
@@ -114,13 +114,161 @@ dtype: float64
 ~~~
 
 These are the steps I took to fix it. 
- 
+
+
+
 As I noticed from the data and after doing research on the other solutions, I realised I had to standardise the directions, since sometimes the Yard lines, direction of players etc and location of play changed the data. 
 My first question was can I even standardise the direction? And will it affect the Yards variable.
 I plot the distribution of home and away and saw it basically had no difference
 
 
 <embed type="text/html" src="https://gist.github.com/f2cd7de45c81cca69fc04c151491ff89.git/" width="800" height="500">
+<code>
+def preprocess():
+    
+    '''Preprocess and clean some of the data, assigning  values to missing values based on the feature and updating Team Abbrevations to remain consistent 
+       Returns the list of columns with empty features'''
+    
+    orient=data.groupby('Position',as_index=False)['Orientation'].mean()
+    Dir=data.groupby('Position',as_index=False)['Dir'].mean()
+    OrientDict={}
+    DirDict={}
+    for i,j in orient.iterrows():
+        OrientDict[j['Position']]=j['Orientation']
+        DirDict[j['Position']]=j['Orientation']
+
+    data.Dir=data.Dir.fillna(data.Position.map(DirDict))
+    data.Orientation=data.Orientation.fillna(data.Position.map(OrientDict))
+
+    tempsperweek=data.groupby(['Season','Week'],as_index=False)['Temperature'].mean()
+    temp2017={}
+    temp2018={}
+    temp2019={}
+    for i,j in tempsperweek.iterrows():
+        if j['Season']==2017:
+            temp2017[j['Week']]=j['Temperature']
+        if j['Season']==2018:
+            temp2018[j['Week']]=j['Temperature']
+        if j['Season']==2019:
+            temp2019[j['Week']]=j['Temperature']
+
+    data.loc[(data.Season==2017) & (data.Temperature.isna()),'Temperature']=data.Temperature.fillna(data.Week.map(temp2017))
+    data.loc[(data.Season==2018) & (data.Temperature.isna()),'Temperature']=data.Temperature.fillna(data.Week.map(temp2018))
+    data.loc[(data.Season==2019) & (data.Temperature.isna()),'Temperature']=data.Temperature.fillna(data.Week.map(temp2019))
+
+    data.loc[data.FieldPosition.isna(),'FieldPosition']='UNKNOWN'
+    data.loc[data.OffenseFormation.isna(),'OffenseFormation']=data.OffenseFormation.value_counts().idxmax()
+
+    data.loc[data.DefendersInTheBox.isna(),'DefendersInTheBox']=data.DefendersInTheBox.median()
+    data.loc[data.Humidity.isna(),'Humidity']=data.Humidity.median()
+
+
+    #Code to clean StadiumType 
+    #code inspired from https://www.kaggle.com/sanshengshi/lightgbm-clean-stadiumtype
+    def StadiumType(txt):
+        txt=str(txt)
+        txt=txt.lower()
+        txt=txt.strip()
+        if 'indoor' in txt or 'closed' in txt:
+            return 0
+        else:
+            return 1   #outdoor or open or unspecified is being treated an as open field 
+    data["StadiumType"]=data["StadiumType"].apply(StadiumType)
+
+    def Gameweather(txt):
+        txt=str(txt)
+        txt=txt.lower()
+        txt=txt.strip()
+        if 'clear' in txt or 'sun' in txt or 'controlled' in txt or 'indoor' in txt:
+            return 0
+        if 'rain' in txt:
+            return 1
+        if 'cloud' in txt or 'overcast' in txt:
+            return 0.5 
+        if 'snow' in txt or 'overcast' in txt:
+            return -0.5
+        return 0                                   # Values given to differentiate between clear and rainy 
+    data["GameWeather"]=data["GameWeather"].apply(Gameweather)
+
+    def Windspeed(txt):
+        if pd.isna(txt):
+            return 7.0                   # Median Value   
+        if '-' in txt:
+            a,b=txt.split('-')
+            return (float(a)+float(b))/2
+        elif txt.isalnum():
+            if re.match('(\d+)',str(txt)):
+                return float(re.match('(\d+)',str(txt))[0])
+            else:
+                return 7.0
+        else:
+            return 0
+    data["WindSpeed"]=data["WindSpeed"].astype(str)
+    data["WindSpeed"]=data["WindSpeed"].apply(Windspeed)
+
+
+    # code based from https://www.kaggle.com/bgmello/neural-networks-feature-engineering-for-the-win
+    def WindDirection(txt):
+
+        #Cleaning the values
+        if pd.isna(txt):
+            return -1
+        txt = txt.lower()
+        txt = ''.join([c for c in txt if c not in punctuation])
+        txt = txt.replace('from', '')
+        txt = txt.replace(' ', '')
+        txt = txt.replace('north', 'n')
+        txt = txt.replace('south', 's')
+        txt = txt.replace('west', 'w')
+        txt = txt.replace('east', 'e')
+
+        #assigning the values
+
+        deg=360
+        if txt=='n':
+            return 0
+        if txt=='nne' or txt=='nen':
+            return 1/16*deg
+        if txt=='ne':
+            return 2/16*deg
+        if txt=='ene' or txt=='nee':
+            return 3/16*deg
+        if txt=='e':
+            return 4/16*deg
+        if txt=='ese' or txt=='see':
+            return 5/16*deg
+        if txt=='se':
+            return 6/16*deg
+        if txt=='ses' or txt=='sse':
+            return 7/16*deg
+        if txt=='s':
+            return 8/16*deg
+        if txt=='ssw' or txt=='sws':
+            return 9/16*deg
+        if txt=='sw':
+            return 10/16*deg
+        if txt=='sww' or txt=='wsw':
+            return 11/16*deg
+        if txt=='w':
+            return 12/16*deg
+        if txt=='wnw' or txt=='nww':
+            return 13/16*deg
+        if txt=='nw':
+            return 14/16*deg
+        if txt=='nwn' or txt=='nnw':
+            return 15/16*deg
+        return -1
+                                          # Values given to differentiate between clear and rainy 
+    data["WindDirection"]=data["WindDirection"].apply(WindDirection)
+    
+    TeamMap={'ARI':'ARZ','BAL':'BLT','CLE':'CLV','HOU':'HST'}
+
+    for k,v in TeamMap.items():
+        data.loc[data['VisitorTeamAbbr']==k,'VisitorTeamAbbr']=v
+        data.loc[data['HomeTeamAbbr']==k,'HomeTeamAbbr']=v
+
+    return data.columns[data.isna().any()==True].values
+</code>
 
 <embed 
     width="100%"
