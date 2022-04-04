@@ -126,8 +126,6 @@ I plot the distribution of home and away and saw it basically had no difference
 <html>
 <style>
 details > summary {
-  padding: 4px;
-  width: 200px;
   border: none;
   cursor: pointer;
 }
@@ -139,7 +137,6 @@ details > summary {
     Expand here for code (150 lines!)
   </summary>
   {% gist f2cd7de45c81cca69fc04c151491ff89 %}
-
 </details>
 
 
