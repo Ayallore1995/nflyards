@@ -324,7 +324,7 @@ The real world is complex, coming up with good features which may or may not wor
 I think it would be dangerous to just leave if the model works fine for now. It doesn't matter in this case cause it is just football, a sport. But in medical and other high profile sectors which can impact a lot of people, I would be vary of releasing models without mapping out it's possible impacts. 	
 
 ## Deployment:
-	I began with Dask, a friend suggested it to me, I enjoyed it a lot , it had extensive and clear documentation. But I decided to go with Streamlit instead, as I wanted more functionality and a little more wiggle room. It also had great documentation and importantly gerat tutorials on Streamlit. I used Heroku to deploy my webpage built on streamlit. 
+I began with Dask, a friend suggested it to me, I enjoyed it a lot , it had extensive and clear documentation. But I decided to go with Streamlit instead, as I wanted more functionality and a little more wiggle room. It also had great documentation and importantly gerat tutorials on Streamlit. I used Heroku to deploy my webpage built on streamlit. 
 
 To make it interactive I converted the data into an image which showed a play at a time with player positions, direction of movement of each player and length of arrows indicated speed of player. So, using this visual information I ask the users to compete with my model. 
 
