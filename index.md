@@ -1,9 +1,9 @@
  <!-- Side navigation -->
 <div class="sidenav">
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <a href="intro">Intro</a><br>
+  <a href="#">Services</a><br>
+  <a href="#">Clients</a><br>
+  <a href="#">Contact</a><br>
 </div>
 
 <!-- Page content -->
@@ -13,6 +13,7 @@
 
 # NFL Rushing Yards
 Case Study based on NFL big Data Bowl 2022 conducted on Kaggle.
+<a id="intro">
 ## Intro
 What is Football? Good question, even experts (on the internet) get quite heated hashing out the definition. For the purposes of this blog, we will refer to American Football as Football, the Hand-egg version. The excellent TV Show Friday Night Lights is based on this game. 
 
@@ -20,7 +21,7 @@ Basic rules of the game, 11 players on the field for each time. One team has pos
 So, the basic gist of Rushing play is that one player called The Rusher is one who is tasked to carry the ball as far as possible. The remaining 10 offensive players look to clear a path for the Rusher. The defensive team looks to block or steal the ball from the rusher.
 Here’s an example. It happens really fast. The defensive and offensive schemes are very complex. There’s a lot of trickery and bluffing involved to confuse the opponents (and invariably us in the process).
 
-
+</a>
 
 <p align="center">
   <img width="500" height="350" src="rush.gif">
