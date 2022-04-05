@@ -172,6 +172,7 @@ details > summary {
   {% gist f2cd7de45c81cca69fc04c151491ff89 %}
   Why did i hide the code? It was simply too big.
 </details>
+<body>
 
 ### How the changes were made to standardise:
 - Changing Direction of the plays to the Left if it is right. And switching the Coordinates, orientaion and other features dependent on the Direction of Play.
