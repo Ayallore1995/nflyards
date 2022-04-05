@@ -1,3 +1,16 @@
+ <!-- Side navigation -->
+<div class="sidenav">
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- Page content -->
+<div class="main">
+  ...
+</div> 
+
 # NFL Rushing Yards
 Case Study based on NFL big Data Bowl 2022 conducted on Kaggle.
 ## Intro
@@ -28,8 +41,9 @@ It can also be used on tv to predict on live tv for the viewers, for post-game o
 So, let me summarise what we are doing. We are given 0.1 seconds of player information and we are expected to model it to find how many yards the rusher would go. Is it easy? Is it hard?
 I don’t know, Let’s find out. 
 
-## Performance measure:
-### 1. CRPS or Continuous Ranked Probability Score.
+## Performance Metrics:
+### 1. Continuous Ranked Probability Score.
+ CRPS was the metric of Evaluation for this Kaggle competetion. It makes sense once you read about this metric.
 
  Mathematically:  
  
@@ -44,9 +58,10 @@ Let me explain some of the terms, first why 199? 199 is the number of buckets(cl
 
 ***P(y<=n)***  represents the cummulative distributive function,
 
-***H(n - Y_m))*** represents the the Heaviside step function, 
+***H(n - Y_m))*** represents the the **Heaviside step function**, 
 
-***H(x)=1 for x>=0 and 0 otherwise***
+***H(x)  =1,x>=0***<br>
+***H(x)  =0,x<0***<br>
 
 let us see for 1 prediction how it would play out. 
 Say our prediction is 5 yards will be gained. 
@@ -127,19 +142,17 @@ As I noticed from the data and after doing research on the other solutions, I re
 My first question was can I even standardise the direction? And will it affect the Yards variable.
 I plot the distribution of home and away and saw it basically had no difference
 
-
-
+![image](https://user-images.githubusercontent.com/77883553/161704220-4b0cd086-6518-415b-8653-e8ce19038754.png)
 
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
- 
+ ![image](https://user-images.githubusercontent.com/77883553/161704340-75490b87-31a6-4c2b-96c2-ba45656b84ee.png)
 
-Changes made to standardise:
+### How the changes were made to standardise:
 - Changing Direction of the plays to the Left if it is right. And switching the Coordinates, orientaion and other features dependent on the Direction of Play.
 - Changing the possession team as always Home team and the defense team as away
 - Creating a new feature Rusher to indicate if the player is the rusher or not
 - Standardising the yardline
 - Converting Direction from degrees to radians.
-The code is given below 
 
 <html>
 <style>
@@ -156,7 +169,7 @@ details > summary {
 
 <details>
   <summary>
-    Click here for code
+    Click here for the code:
   </summary>
   {% gist f2cd7de45c81cca69fc04c151491ff89 %}
 </details>
@@ -164,19 +177,17 @@ details > summary {
 
 Now the data is all cleaned up and looking handsome, let’s see the basic stats 
 
-
-
- 
+![image](https://user-images.githubusercontent.com/77883553/161704618-d2b14744-1f15-4805-90ef-a67993187376.png)
 
 The data was provided in between the 2019 season , so that explains the slightly less number of games from 2019 season.
 
 I wanted to see the percentile values to see the values my potential model should be predicting.
-As the table shows the values are concentrated around -1 and 10 (1oth and 90th percentile)
- 
+As the table shows the values are concentrated around -1 and 10 (10th and 90th percentile)
+![image](https://user-images.githubusercontent.com/77883553/161704706-cdecb4cb-76dd-40e4-b1fb-57b04454993e.png)
 
 The Inter Quartile range was just 5 yards.
 
-Next I wanted to see if the Downs had any effect on the Yards. So a boxplot for each Down. 
+Next I wanted to see if the Downs (Each try is called a down) had any effect on the Yards. So a boxplot for each Down. 
 (If you’ve forgotten what a ‘Down’ is , each play has 4 tries and each try is called a Down)
  
 First 3 downs mostly look alike but fourth Down the value is lower, It makes sense since the offense would rather kick the ball upfield and lose it instead of letting the opposition have an advantage.
