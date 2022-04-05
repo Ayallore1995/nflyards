@@ -139,7 +139,18 @@ dtype: float64
 ~~~
 
 These are the steps I took to fix it. 
-
+<br>
+- **Orientation** and **Direction** of players filled with the mean of the orientation of all players based on their position like wingback, rusher etc.
+- **Temperature** filled with the mean temperature based on the season (2017/18/19) and based on the week(1-11)
+- Unknown **Field Positions** were given an 'unknown' value since it is a decent chunk of unknown values
+- **Defenders in the box, OffenseFormation** and **Humidity** filled with  the median values
+- **Stadium Type** was classed into open or closed only 
+- **Game Weather** divided into four buckets, rainy, sunny, cold or overcast. Each bucket having it's own numerical value
+- **Windspeed** filled with only numerical values extracted from the description
+- **WindDirection** cleaned and assigned values in degrees instead of description, for example northeast given the value of 90 degrees.
+[Link to code](https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89)
+A snapshot of the code in the link <br>
+![image](https://user-images.githubusercontent.com/77883553/161735789-81b4b82e-b5d1-4bba-883b-d1f31ee6bc93.png)<br>
 As I noticed from the data and after doing research on the other solutions, I realised I had to standardise the directions, since sometimes the Yard lines, direction of players etc and location of play changed the data. 
 My first question was can I even standardise the direction? And will it affect the Yards variable.
 I plot the distribution of home and away and saw it basically had no difference
@@ -149,13 +160,6 @@ I plot the distribution of home and away and saw it basically had no difference
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.<br>
 ![image](https://user-images.githubusercontent.com/77883553/161704340-75490b87-31a6-4c2b-96c2-ba45656b84ee.png)
 
-
-
-<br>
-[Link to code](https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89)
-A snapshot<br>
-![image](https://user-images.githubusercontent.com/77883553/161735223-f0a15041-24e0-43ba-a7f9-9a13518dfbb3.png)
-<br>
 
 ### How the changes were made to standardise:
 - Changing Direction of the plays to the Left if it is right. And switching the Coordinates, orientaion and other features dependent on the Direction of Play.
