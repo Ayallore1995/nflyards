@@ -277,15 +277,18 @@ I experimented with some models, I thought the models which could handle more co
 ### Decision Trees
 
 {% gist e3ebc2e51d448076b698ce4630e45272 %}<br>
+	
 ![image](https://user-images.githubusercontent.com/77883553/161723276-95c22e7d-e394-4da1-b878-0afabd304ecd.png)<br>
 
 ### Random Forest
 	
 {% gist 1cd8e257d986407c794583b69acbe81f %}<br>
+	
 ![image](https://user-images.githubusercontent.com/77883553/161715186-e2a5f937-edf8-4a47-a484-5d4665fa0525.png)<br>
 
 ### XGBoost
 {% gist 93e2049cc7af35894abfbec4e12ade99 %}<br>
+	
 ![image](https://user-images.githubusercontent.com/77883553/161714768-55fd63a8-dd77-48ea-8300-5240f62ab910.png)<br>
 	
 ###	Dense Neural Network
