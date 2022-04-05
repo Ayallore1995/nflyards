@@ -193,6 +193,13 @@ Orientation of 2017 data was off by a phase of 90 degrees. So a simple fix.
 ![image](https://user-images.githubusercontent.com/77883553/161727258-a4e91e24-566f-444d-b13d-d697b39d6e81.png)
 
 
+[Data](#data)<br>
+[PreProcessing](#preprocessing)<br>
+[Feature Engineering](#feature-engineering)<br>
+[Modelling](#modelling)<br>
+[Deployment](#deployment)<br>
+[Final Thoughts and Acknowledgments](#conlusion)<br>
+
 ## EDA
 Now that the data is all cleaned up, Some basic stats 
 
@@ -258,6 +265,13 @@ I also created a new feature called momentum (mass * velocity) thinking, momentu
 One of the things that came up in my research was that this competition was similar to one that was held on Kaggle some time back, It was on molecule behaviour and predicting the movement, so this competition can be looked at in a similar way. Since both had "individual nodes" interacting with each other. 
 
 Merged it with global play features. I did some feature selection and dropped the ones which weren’t contributing much like Turf, Player Height etc.
+
+[Introduction](#intro)<br>
+[Performance Metrics](#performance-metrics)<br>
+[Data](#data)<br>
+[PreProcessing](#preprocessing)<br>
+[Deployment](#deployment)<br>
+[Final Thoughts and Acknowledgments](#conlusion)<br>
 
 ## Modelling
 I experimented with some models, I thought the models which could handle more complexities would fare better so I tried these.
@@ -363,11 +377,11 @@ email: ayallore95@gmail.com<br>
 ## Acknowledgements
 I would like to thank the Applied AI team , who helped mentor this project and taught me real world applications of ML and DL.<br>
 [NFL Big Bowl 2020](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/overview)<br>
-[kaggle winner zoo et al] (https://www.kaggle.com/c/nfl-big-data-bowl-2020/discussion/119400)<br>
+[kaggle winner zoo et al](https://www.kaggle.com/c/nfl-big-data-bowl-2020/discussion/119400)<br>
 [kaggle code by cpmpl](https://www.kaggle.com/code/cpmpml/initial-wrangling-voronoi-areas-in-python)<br>
 
 		
-## Missed something?:
+## Revisit a section?:
 
 [Introduction](#intro)<br>
 [Performance Metrics](#performance-metrics)<br>
