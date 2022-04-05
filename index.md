@@ -45,6 +45,7 @@ So, let me summarise what we are doing. We are given 0.1 seconds of player infor
 I don’t know, Let’s find out. 
 
 ## Performance Metrics:
+
 ### 1. Continuous Ranked Probability Score.
  CRPS was the metric of Evaluation for this Kaggle competetion. It makes sense once you read about this metric.
 
@@ -118,7 +119,7 @@ Let’s Explore, Dissect and Analyse the data (go along with my silly jokes).
 First, I load the data into a pandas dataframe. The csv file was around 240mb so not the biggest file, but reasonably big. 
 One of the early steps is to make sure the data is complete, so I printed the columns causing the problems and the percentage to see how deep I would have to go to fix it.
 
-
+<br>
 {% gist b9fa6a019e3bbabf85ad79821817e6db %}
 
 ~~~python
@@ -144,10 +145,10 @@ These are the steps I took to fix it.
 As I noticed from the data and after doing research on the other solutions, I realised I had to standardise the directions, since sometimes the Yard lines, direction of players etc and location of play changed the data. 
 My first question was can I even standardise the direction? And will it affect the Yards variable.
 I plot the distribution of home and away and saw it basically had no difference
-
+<br>
 ![image](https://user-images.githubusercontent.com/77883553/161704220-4b0cd086-6518-415b-8653-e8ce19038754.png)
-
-Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
+<br>
+Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.<br>
 ![image](https://user-images.githubusercontent.com/77883553/161704340-75490b87-31a6-4c2b-96c2-ba45656b84ee.png)
 
 <html>
@@ -167,6 +168,7 @@ details > summary {
   <summary>
     Click here for the code:
   </summary>
+	<br>
   {% gist f2cd7de45c81cca69fc04c151491ff89 %}
   Why did i hide the code? It was simply too big.
 </details>
@@ -177,15 +179,17 @@ details > summary {
 - Creating a new feature Rusher to indicate if the player is the rusher or not
 - Standardising the yardline
 - Converting Direction from degrees to radians.
-	
+<br>
 {% gist 58d3687ddf945e3ccdfa455b0776861b %}
 	
-
+<br>
 ### Odd data 
+<br>
 Fixing some data discrepancies:
 	2017 season had some discrepancies, one of them was in Distance feature, it didn’t match the distribution of the other 2 seasons. So, I manually adjusted to make it more along the lines of the other 2 years.   
 
 Before and after 'fixing'
+<br>
 ![image](https://user-images.githubusercontent.com/77883553/161726965-4ede6526-2bd7-47cf-8ebd-3ecd5588288b.png)
 
 Another feature which didn’t align with the 2018 and 19 data was speed vs Distance correlation. As shown in the diagram, since the time was 0.1 seconds, speed should be roughly 10x distance but it was off, a simple substiution made it look nicer but didn’t improve the simple correlation, so I just let it be. 
@@ -260,7 +264,7 @@ Next challenge was condensing 22 rows into 1 to feed into any model we want, I o
 {% gist eb4f0fd0785bb142ba4f49fbb011a4d8 %}<br>	
 I created some new features, Speed and acceleration along the vertical and horizontal axis and found relative speeds along those axes. 
 I also created a new feature called momentum (mass * velocity) thinking, momentum of a player could be helpful in breaking through lines or blocking the attacker from moving forward.
-	
+<br>
 {% gist 5e849068de33c6c26b6c4f9d324bc171 %}<br>
 	
 One of the things that came up in my research was that this competition was similar to one that was held on Kaggle some time back, It was on molecule behaviour and predicting the movement, so this competition can be looked at in a similar way. Since both had "individual nodes" interacting with each other. 
@@ -273,29 +277,28 @@ I experimented with some models, I thought the models which could handle more co
 ### Decision Trees
 
 {% gist e3ebc2e51d448076b698ce4630e45272 %}<br>
-![image](https://user-images.githubusercontent.com/77883553/161723276-95c22e7d-e394-4da1-b878-0afabd304ecd.png)
-
+![image](https://user-images.githubusercontent.com/77883553/161723276-95c22e7d-e394-4da1-b878-0afabd304ecd.png)<br>
 
 ### Random Forest
 	
 {% gist 1cd8e257d986407c794583b69acbe81f %}<br>
-![image](https://user-images.githubusercontent.com/77883553/161715186-e2a5f937-edf8-4a47-a484-5d4665fa0525.png)
+![image](https://user-images.githubusercontent.com/77883553/161715186-e2a5f937-edf8-4a47-a484-5d4665fa0525.png)<br>
 
 ### XGBoost
 {% gist 93e2049cc7af35894abfbec4e12ade99 %}<br>
-![image](https://user-images.githubusercontent.com/77883553/161714768-55fd63a8-dd77-48ea-8300-5240f62ab910.png)
+![image](https://user-images.githubusercontent.com/77883553/161714768-55fd63a8-dd77-48ea-8300-5240f62ab910.png)<br>
 	
 ###	Dense Neural Network
 
 I used Tensorflow to contruct and train the Neural Network.
 I started small with just 1 or 2 hidden layers, ReLU activation, Reducing Learning rate every 3rd epoch.Early stopping was also used.
-Used a custom function to measure CRPS , I used CRPS as the loss, I also experimented with Root Mean Square Error as loss, both were close in performance but ultimately crps just gave an edge.
+Used a custom function to measure CRPS , I used CRPS as the loss, I also experimented with Root Mean Square Error as loss, both were close in performance but ultimately crps just gave an edge.<br>
 ```python
 def crps_nn(y_true,y_pred):
     loss = K.mean(K.sum((K.cumsum(y_pred, axis = 1) - K.cumsum(y_true, axis=1))**2, axis=1))/199
     return loss
 ```
-Made sure to monitor Validation CRPS after each Epoch
+Made sure to monitor Validation CRPS after each Epoch<br>
 ```python
 class calls(tf.keras.callbacks.Callback):
     def on_epoch_end(self,epoch,logs):
@@ -308,11 +311,11 @@ class calls(tf.keras.callbacks.Callback):
         print('val CRPS', val_s)
 					  
 ```
-Model consistently converged to a Validation CRPS of 0.0135(+-0.005) after 20 Epochs. It erformed vastly better than the middling 0.22 from the above Machine Learning models. Even my initial smaller first try Neural Networks beat it comfortably.
+Model consistently converged to a Validation CRPS of 0.0135(+-0.005) after 20 Epochs. It erformed vastly better than the middling 0.22 from the above Machine Learning models. Even my initial smaller first try Neural Networks beat it comfortably.<br>
 
 					   
 ### Model Summary
-![image](https://user-images.githubusercontent.com/77883553/161713775-dc4552c2-c6fc-42f7-8feb-9d3737c22d99.png)
+![image](https://user-images.githubusercontent.com/77883553/161713775-dc4552c2-c6fc-42f7-8feb-9d3737c22d99.png)<br>
 
 ### Why Neural Networks
 Why did the Neural Network perform so well compared to the classic techniques?
