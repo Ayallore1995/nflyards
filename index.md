@@ -203,18 +203,19 @@ Orientation of 2017 data was off by a phase of 90 degrees. So a simple fix.
 
 ## EDA
 Now that the data is all cleaned up, Some basic stats 
-
-![image](https://user-images.githubusercontent.com/77883553/161704618-d2b14744-1f15-4805-90ef-a67993187376.png)
+<br>
+![image](https://user-images.githubusercontent.com/77883553/161737593-e0b500eb-a1e8-43cd-b87e-5c6902b3a4a6.png)
 
 The data was provided in between the 2019 season , so that explains the slightly less number of games from 2019 season.
 
 ### Distribution of Yards
+<br>
 ![image](https://user-images.githubusercontent.com/77883553/161725176-2c4ef6aa-3b9d-46f2-b938-516b8111c2e0.png)
 
 ### Percentile Values
 I wanted to see the percentile values to see the values my potential model should be predicting.
-As the table shows the values are concentrated around -1 and 10 (10th and 90th percentile)
-![image](https://user-images.githubusercontent.com/77883553/161704706-cdecb4cb-76dd-40e4-b1fb-57b04454993e.png)
+As the table shows the values are concentrated around -1 and 10 (10th and 90th percentile)<br>
+![image](https://user-images.githubusercontent.com/77883553/161737633-2dbe2d2f-1299-4006-b6eb-f0f539475d4e.png)
 
 The Inter Quartile range was just 5 yards.
 ### Downs vs Yards
