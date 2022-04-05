@@ -353,16 +353,16 @@ I had a great time doing this Case Study. Learning to do something for specific 
 		
 ## Future Projects
 I would like to to try out the Next Competition held by NFL in the future Super Bowl 2021, They provide a lot more data than 0.1 seconds worth. 
-(Hope to fill this section soon)
+(Hope to fill this section soon)<br>
 [Link to my Github](https://github.com/Ayallore1995)
 
 ## Contact
-email: ayallore95@gmail.com
+email: ayallore95@gmail.com<br>
 [LinkedIn Profile](https://www.linkedin.com/in/abraham-ayallore-3a0011169/)
 		
 ## Acknowledgements
-I would like to thank the Applied AI team , who helped mentor this project and taught me real world applications of ML and DL.
-[NFL Big Bowl 2020](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/overview)
+I would like to thank the Applied AI team , who helped mentor this project and taught me real world applications of ML and DL.<br>
+[NFL Big Bowl 2020](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/overview)<br>
 [kaggle winner zoo et al] (https://www.kaggle.com/c/nfl-big-data-bowl-2020/discussion/119400)<br>
 [kaggle code by cpmpl](https://www.kaggle.com/code/cpmpml/initial-wrangling-voronoi-areas-in-python)<br>
 
