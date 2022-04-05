@@ -343,11 +343,11 @@ You can try it out here [Link to my webapp ](https://nflpredictiongame.herokuapp
 
 ![image](https://user-images.githubusercontent.com/77883553/161728042-fe58b82d-8b55-4505-892d-79ebe07d630d.png)<br>
 <p align="center">
-  <img width="500" height="350" src="https://user-images.githubusercontent.com/77883553/161728162-fd9c3660-e5c0-4191-95ca-d373111ef595.png">
+  <img src="https://user-images.githubusercontent.com/77883553/161728162-fd9c3660-e5c0-4191-95ca-d373111ef595.png">
 </p>
 <br>
 <p align="center">
-  <img width="500" height="350" src="https://user-images.githubusercontent.com/77883553/161728247-fc3e4a96-7ffe-4384-86d2-6bf8b72d3742.png">
+  <img src="https://user-images.githubusercontent.com/77883553/161728247-fc3e4a96-7ffe-4384-86d2-6bf8b72d3742.png">
 </p>
 <br>
 I was very intimidated by all talk about deployment for quite some time since I had no prior experince in Software Engineering, But the Internet is a wonderful place and I could figure a way to piece information together to achieve this task.  
