@@ -148,7 +148,8 @@ These are the steps I took to fix it.
 - **Game Weather** divided into four buckets, rainy, sunny, cold or overcast. Each bucket having it's own numerical value
 - **Windspeed** filled with only numerical values extracted from the description
 - **WindDirection** cleaned and assigned values in degrees instead of description, for example northeast given the value of 90 degrees.
-[Link to code](https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89)
+<br>
+[Link to code](https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89)<br>
 A snapshot of the code in the link <br>
 ![image](https://user-images.githubusercontent.com/77883553/161735789-81b4b82e-b5d1-4bba-883b-d1f31ee6bc93.png)<br>
 As I noticed from the data and after doing research on the other solutions, I realised I had to standardise the directions, since sometimes the Yard lines, direction of players etc and location of play changed the data. 
