@@ -9,7 +9,6 @@
 <!-- Page content -->
 <div class="main">
   ...
-</div> 
 
 # NFL Rushing Yards
 Case Study based on NFL big Data Bowl 2022 conducted on Kaggle.
@@ -281,4 +280,6 @@ To make it interactive I converted the data into an image which showed a play at
 You can try it out here [https://nflpredictiongame.herokuapp.com/]
 I had minimal experience on how to deploy anything on Heroku , So I used the help of this video which made everything super simple. Very well explained and everything worked without any issues. Highly recommend this video if you’re unsure how to deploy on Heroku. 
 [https://www.youtube.com/watch?v=nJHrSvYxzjE]
+
+</div> 
 
