@@ -1,16 +1,22 @@
- <!-- Side navigation -->
-<div class="sidenav">
-  <a href="intro">Intro</a><br>
-  <a href="#">Services</a><br>
-  <a href="#">Clients</a><br>
-  <a href="#">Contact</a><br>
-</div>
-
 
 
 # NFL Rushing Yards
 Case Study based on NFL big Data Bowl 2022 conducted on Kaggle.
-<a id="intro">
+
+## Jump to Section:
+
+[Introduction](#intro)<br>
+[Performance Metrics](#performance-metrics)<br>
+[Data](#data)<br>
+[PreProcessing](#preprocessing)<br>
+[Explratory Data Analysis](#eda)<br>
+[Feature Engineering](#feature-engineering)<br>
+[Modelling](#modelling)<br>
+[Deployment](#deployment)<br>
+[Final Thoughts and Acknowledgments](#conlusion)<br>
+
+
+
 ## Intro
 What is Football? Good question, even experts (on the internet) get quite heated hashing out the definition. For the purposes of this blog, we will refer to American Football as Football, the Hand-egg version. The excellent TV Show Friday Night Lights is based on this game. 
 
@@ -18,21 +24,20 @@ Basic rules of the game, 11 players on the field for each time. One team has pos
 So, the basic gist of Rushing play is that one player called The Rusher is one who is tasked to carry the ball as far as possible. The remaining 10 offensive players look to clear a path for the Rusher. The defensive team looks to block or steal the ball from the rusher.
 Here’s an example. It happens really fast. The defensive and offensive schemes are very complex. There’s a lot of trickery and bluffing involved to confuse the opponents (and invariably us in the process).
 
-</a>
 
 <p align="center">
   <img width="500" height="350" src="rush.gif">
 </p>
 
  
-## The Competition
+### The Competition
 
 The Kaggle competition was held by NFL, they provided data for the seasons 2017 to 2019.
 The data was divided into plays, each play given a unique ID, each play had the location, speed, acceleration, orientation, distance covered of all players involved, height, weight, position, so in total 22 player data for each play. And there were global features like Wind speed, weather, type of ground, temperature, humidity etc which were same for all the players for a given play.
 This data was recorded for just 0.1 secs. So not a lot!
 As an armchair quarterback watching the game live may think they can predict how far the Rusher would go. The goal of the competition is to see what the data says and model it to predict How many Yards the Rusher would gain or lose.
 
-## Why do this 
+### Why do this 
 If we can find deeper insights using the given data, this could help coaches see if their schemes are working, if the players are in correct positions, what can be exploited, what can be improved.
 It can also be used on tv to predict on live tv for the viewers, for post-game or pre-game shows breakdown of the games.  
 
@@ -80,7 +85,7 @@ I tried to formulate it as a regression problem, but opted for CRPS since CRPS g
 As luck would have it, CRPS also gave better convergence compared to MSE. So a win-win in my books.
 
 
-## Possible Issues: 
+### Possible Issues: 
 
 1. Model Interpretability is important for the coaching decisions and checking it’s effectiveness.
 2. Latency , if it is used on live tv as part of the graphics.
@@ -102,12 +107,12 @@ The following features are included in the dataset:
 -   **Yards** 
 -   Position, StadiumType , Turf,  GameWeather
 
-** Target Variable is *Yards* **
+**Target Variable is *Yards***
 
 ## Research:
 I went through the available Kaggle code solutions. The most impressive was the Winner’s solution. It used just 5 of the given variables (the relative distance and velocity)and used an ingenious method to win the competition. The rest of the competitors weren’t half bad! And I took a lot of inspiration and saw what worked and what didn’t. *Transfer Learning* if you may. 
 
-## EDA:
+## PreProcessing:
 Let’s Explore, Dissect and Analyse the data (go along with my silly jokes). 
 
 First, I load the data into a pandas dataframe. The csv file was around 240mb so not the biggest file, but reasonably big. 
@@ -143,14 +148,7 @@ I plot the distribution of home and away and saw it basically had no difference
 ![image](https://user-images.githubusercontent.com/77883553/161704220-4b0cd086-6518-415b-8653-e8ce19038754.png)
 
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.
- ![image](https://user-images.githubusercontent.com/77883553/161704340-75490b87-31a6-4c2b-96c2-ba45656b84ee.png)
-
-### How the changes were made to standardise:
-- Changing Direction of the plays to the Left if it is right. And switching the Coordinates, orientaion and other features dependent on the Direction of Play.
-- Changing the possession team as always Home team and the defense team as away
-- Creating a new feature Rusher to indicate if the player is the rusher or not
-- Standardising the yardline
-- Converting Direction from degrees to radians.
+![image](https://user-images.githubusercontent.com/77883553/161704340-75490b87-31a6-4c2b-96c2-ba45656b84ee.png)
 
 <html>
 <style>
@@ -164,119 +162,221 @@ details > summary {
 }
 </style>
 <body>
-
+	
 <details>
   <summary>
     Click here for the code:
   </summary>
   {% gist f2cd7de45c81cca69fc04c151491ff89 %}
+  Why did i hide the code? It was simply too big.
 </details>
- 
 
-Now the data is all cleaned up and looking handsome, let’s see the basic stats 
+### How the changes were made to standardise:
+- Changing Direction of the plays to the Left if it is right. And switching the Coordinates, orientaion and other features dependent on the Direction of Play.
+- Changing the possession team as always Home team and the defense team as away
+- Creating a new feature Rusher to indicate if the player is the rusher or not
+- Standardising the yardline
+- Converting Direction from degrees to radians.
+	
+{% gist 58d3687ddf945e3ccdfa455b0776861b %}
+	
+
+### Odd data 
+Fixing some data discrepancies:
+	2017 season had some discrepancies, one of them was in Distance feature, it didn’t match the distribution of the other 2 seasons. So, I manually adjusted to make it more along the lines of the other 2 years.   
+
+Before and after 'fixing'
+![image](https://user-images.githubusercontent.com/77883553/161726965-4ede6526-2bd7-47cf-8ebd-3ecd5588288b.png)
+
+Another feature which didn’t align with the 2018 and 19 data was speed vs Distance correlation. As shown in the diagram, since the time was 0.1 seconds, speed should be roughly 10x distance but it was off, a simple substiution made it look nicer but didn’t improve the simple correlation, so I just let it be. 
+ 
+![image](https://user-images.githubusercontent.com/77883553/161727150-68704b5c-1b21-4e59-baa4-367dbea2b989.png)
+
+After making the substitution. 
+
+![image](https://user-images.githubusercontent.com/77883553/161727194-a96cbf3c-3260-490c-83d3-0d0ef2d451b0.png)
+
+Orientation of 2017 data was off by a phase of 90 degrees. So a simple fix.
+	
+![image](https://user-images.githubusercontent.com/77883553/161727258-a4e91e24-566f-444d-b13d-d697b39d6e81.png)
+
+
+## EDA
+Now that the data is all cleaned up, Some basic stats 
 
 ![image](https://user-images.githubusercontent.com/77883553/161704618-d2b14744-1f15-4805-90ef-a67993187376.png)
 
 The data was provided in between the 2019 season , so that explains the slightly less number of games from 2019 season.
 
+### Distribution of Yards
+![image](https://user-images.githubusercontent.com/77883553/161725176-2c4ef6aa-3b9d-46f2-b938-516b8111c2e0.png)
+
+### Percentile Values
 I wanted to see the percentile values to see the values my potential model should be predicting.
 As the table shows the values are concentrated around -1 and 10 (10th and 90th percentile)
 ![image](https://user-images.githubusercontent.com/77883553/161704706-cdecb4cb-76dd-40e4-b1fb-57b04454993e.png)
 
 The Inter Quartile range was just 5 yards.
+### Downs vs Yards
 
 Next I wanted to see if the Downs (Each try is called a down) had any effect on the Yards. So a boxplot for each Down. 
 (If you’ve forgotten what a ‘Down’ is , each play has 4 tries and each try is called a Down)
- 
+	
+![image](https://user-images.githubusercontent.com/77883553/161725635-8d931b09-c254-47f2-8580-55534a8104da.png)
+
 First 3 downs mostly look alike but fourth Down the value is lower, It makes sense since the offense would rather kick the ball upfield and lose it instead of letting the opposition have an advantage.
 This reflected in the central tendencies 
  
+![image](https://user-images.githubusercontent.com/77883553/161726046-5d8fb325-a94a-4f6d-b09a-94c0f26d881a.png)
 
-
-
-
+### Rusher Speed,Acceleration and Distance vs Yards
 
 Another question I had was whether there was any relation between The Rusher speed, acceleration and Distance compared to Yards
- 
+	
+![image](https://user-images.githubusercontent.com/77883553/161726096-6484da2b-82ba-48f7-be4e-cc71d248d264.png)
 
 It looks very noisy with some possible relation, but nothing concrete.
 
-
+### Rusher Play Position
+	
 Did the position of the Rusher matter?
 Evidently so. The CB position yielded the best Yards gained.
- 
+	
+![image](https://user-images.githubusercontent.com/77883553/161726156-3d20b5c2-e93c-4fa2-85be-8bd1012065bb.png)
 
-
+### Defenders in Box vs Yards
 Next was defenders in the box. Naturally the less defenders there were the more Yards were gained, nothing ground-breaking about this but nice to know I suppose.
- 
+	
+![image](https://user-images.githubusercontent.com/77883553/161726251-6c4a2c33-7c46-4280-9a20-cf932b262044.png)
+
+### Quarter vs Yards
 The Quarter had basically no effect , other than overtime having a very small tail compared to others.  
 
+![image](https://user-images.githubusercontent.com/77883553/161726400-ede347af-ab7a-4232-82cb-337d6ac059d7.png)
 
+## Feature Engineering:
 
-
-
-Fixing some data discrepancies: 
-2017 season had some discrepancies, one of them was in Distance feature, it didn’t match the distribution of the other 2 seasons. So, I manually adjusted to make it more along the lines of the other 2 years.   
-
- 
- 
-
-
-
-
-
-
-Another feature which didn’t align with the 2018 and 19 data was speed vs Distance correlation. As shown in the diagram, since the time was 0.1 seconds, speed should be roughly 10x distance but it was off, a simple substiution made it look nicer but didn’t improve the simple correlation, so I just let it be. 
- 
-After making the substitution. 
-
- 
-
-
-
-
-
-
-
-
-Orientation of 2017 data was off by a phase of 90 degrees. So a simple fix.
- 
-
-
-Feature Engineering:
-Next challenge was condensing 22 rows into 1 to feed into any model we want, I opted for having The Rusher as the frame of reference (Remember we made a new feature some paragraphs back, this was why ). So, I found relative distance between all players vs the rusher. I also added the inverse distance squared, this was taken from the research, inverse square worked better than other distances. 
+Next challenge was condensing 22 rows into 1 to feed into any model we want, I opted for having The Rusher as the frame of reference (Remember we made a new feature some sections back, this was why ). So, I found relative distance between all players vs the Rusher. I also added the inverse distance squared, this was taken from the research, inverse square worked better than other distances. 
+{% gist eb4f0fd0785bb142ba4f49fbb011a4d8 %}<br>	
 I created some new features, Speed and acceleration along the vertical and horizontal axis and found relative speeds along those axes. 
-I also created a new feature called momentum(mass * velocity), One of the things that came up in my research was that this competition was similar to one that was held on Kaggle some time back, It was on molecule behaviour and predicting the movement, so this competition can be looked at in a similar way. 
-   
-Finally merged it with global play features. I did some feature selection and dropped the ones which weren’t contributing much.
+I also created a new feature called momentum (mass * velocity) thinking, momentum of a player could be helpful in breaking through lines or blocking the attacker from moving forward.
+	
+{% gist 5e849068de33c6c26b6c4f9d324bc171 %}<br>
+	
+One of the things that came up in my research was that this competition was similar to one that was held on Kaggle some time back, It was on molecule behaviour and predicting the movement, so this competition can be looked at in a similar way. Since both had "individual nodes" interacting with each other. 
 
-Models I tried:
-Conducted Gridsearch CV on the machine learning models. These were the outcomes.
-1.	XGBoost
- 
-2.	Random Forest
- 
-3.	Decision Trees
- 
-4.	Dense Neural Network
-This is the architecture after trail and error. Tried different learning rates and different number of layers and nodes, but all were vastly outperforming the above algorithms
- 
-After 100 epochs, it had a validation CRPS of around 0.0135, vastly better than the middling 0.22 from the above models.
+Merged it with global play features. I did some feature selection and dropped the ones which weren’t contributing much like Turf, Player Height etc.
 
-	 
+## Modelling
+I experimented with some models, I thought the models which could handle more complexities would fare better so I tried these.
+ 
+### Decision Trees
+
+{% gist e3ebc2e51d448076b698ce4630e45272 %}<br>
+![image](https://user-images.githubusercontent.com/77883553/161723276-95c22e7d-e394-4da1-b878-0afabd304ecd.png)
 
 
-Summary of the model performance.
- 
+### Random Forest
+	
+{% gist 1cd8e257d986407c794583b69acbe81f %}<br>
+![image](https://user-images.githubusercontent.com/77883553/161715186-e2a5f937-edf8-4a47-a484-5d4665fa0525.png)
 
-Deployment:
-I used streamlit to build the website and Heroku to deploy it. I first started with Dask which was easier but I wanted a bit more functionality to so I switched to Streamlit. It had very good documentation and I had the world’s best instructor YouTube to help me out whenever I got stuck.
+### XGBoost
+{% gist 93e2049cc7af35894abfbec4e12ade99 %}<br>
+![image](https://user-images.githubusercontent.com/77883553/161714768-55fd63a8-dd77-48ea-8300-5240f62ab910.png)
+	
+###	Dense Neural Network
+
+I used Tensorflow to contruct and train the Neural Network.
+I started small with just 1 or 2 hidden layers, ReLU activation, Reducing Learning rate every 3rd epoch.Early stopping was also used.
+Used a custom function to measure CRPS , I used CRPS as the loss, I also experimented with Root Mean Square Error as loss, both were close in performance but ultimately crps just gave an edge.
+```python
+def crps_nn(y_true,y_pred):
+    loss = K.mean(K.sum((K.cumsum(y_pred, axis = 1) - K.cumsum(y_true, axis=1))**2, axis=1))/199
+    return loss
+```
+Made sure to monitor Validation CRPS after each Epoch
+```python
+class calls(tf.keras.callbacks.Callback):
+    def on_epoch_end(self,epoch,logs):
+        y_pred = self.model.predict(X_test)
+        y_true = np.clip(np.cumsum(Y_test, axis=1), 0, 1)
+        y_pred = np.clip(np.cumsum(y_pred, axis=1), 0, 1)
+        #y_pred=np.where(y_pred<0.1,0.0,1.0)
+					     
+        val_s = ((y_true - y_pred) ** 2).sum(axis=1).sum(axis=0) / (199 * X_test.shape[0])
+        print('val CRPS', val_s)
+					  
+```
+Model consistently converged to a Validation CRPS of 0.0135(+-0.005) after 20 Epochs. It erformed vastly better than the middling 0.22 from the above Machine Learning models. Even my initial smaller first try Neural Networks beat it comfortably.
+
+					   
+### Model Summary
+![image](https://user-images.githubusercontent.com/77883553/161713775-dc4552c2-c6fc-42f7-8feb-9d3737c22d99.png)
+
+### Why Neural Networks
+Why did the Neural Network perform so well compared to the classic techniques?
+					     
+One possible explanation could be it creates these non linear features by itself through trial and error and just brute forces it way to the best of it's ability.
+The real world is complex, coming up with good features which may or may not work consumes a lot of time and effort. Neural Networks automate a lot of that process.
+
+### Issues
+I think it would be dangerous to just leave if the model works fine for now. It doesn't matter in this case cause it is just football, a sport. But in medical and other high profile sectors which can impact a lot of people, I would be vary of releasing models without mapping out it's possible impacts. 	
+
+## Deployment:
+	I began with Dask, a friend suggested it to me, I enjoyed it a lot , it had extensive and clear documentation. But I decided to go with Streamlit instead, as I wanted more functionality and a little more wiggle room. It also had great documentation and importantly gerat tutorials on Streamlit. I used Heroku to deploy my webpage built on streamlit. 
 
 To make it interactive I converted the data into an image which showed a play at a time with player positions, direction of movement of each player and length of arrows indicated speed of player. So, using this visual information I ask the users to compete with my model. 
-    
 
-You can try it out here [https://nflpredictiongame.herokuapp.com/]
-I had minimal experience on how to deploy anything on Heroku , So I used the help of this video which made everything super simple. Very well explained and everything worked without any issues. Highly recommend this video if you’re unsure how to deploy on Heroku. 
-[https://www.youtube.com/watch?v=nJHrSvYxzjE]
+		
+You can try it out here [Link to my webapp ](https://nflpredictiongame.herokuapp.com/)
+		
+![image](https://user-images.githubusercontent.com/77883553/161728042-fe58b82d-8b55-4505-892d-79ebe07d630d.png)<br>
+![image](https://user-images.githubusercontent.com/77883553/161728162-fd9c3660-e5c0-4191-95ca-d373111ef595.png)<br>
+![image](https://user-images.githubusercontent.com/77883553/161728247-fc3e4a96-7ffe-4384-86d2-6bf8b72d3742.png)
+
+I was very intimidated by all talk about deployment for quite some time since I had no prior experince in Software Engineering, But the Internet is a wonderful place and I could figure a way to piece information together to achieve this task.  
+		
+I had minimal experience on how to deploy anything on Heroku , So I used the help of this video which made everything simple. Very well explained and everything worked without any issues. Highly recommend this video if you’re unsure how to deploy on Heroku. 
+[Youtube Link](https://www.youtube.com/watch?v=nJHrSvYxzjE)
+
+## Possible Improvements
+-  Model calibration was something I wanted to include. 
+-  2D- CNN architecture and transformer based methods which were used by the top Kaggle solutions
+-  Data Augmentation to increase training data			
+-  Graph Based Features and Graph Neural Networks
+-  Dissect and figure out why and what parts of the Neural Network works so well.
+-  Webpage improvements, Although I liked Streamlit, I wanted even more flexibility, I am excited to try new web dev frameworks.
+
+## Conclusion
+I had a great time doing this Case Study. Learning to do something for specific task helped speed things up. Most of the issues I faced were to thread the needle through things I wanted to do, since everything is mostly available online. Learning to piece together information and making it cohesive would be my main takwaway from this project. 
+		
+## Future Projects
+I would like to to try out the Next Competition held by NFL in the future Super Bowl 2021, They provide a lot more data than 0.1 seconds worth. 
+(Hope to fill this section soon)
+[Link to my Github](https://github.com/Ayallore1995)
+
+## Contact
+email: ayallore95@gmail.com
+[LinkedIn Profile](https://www.linkedin.com/in/abraham-ayallore-3a0011169/)
+		
+## Acknowledgements
+I would like to thank the Applied AI team , who helped mentor this project and taught me real world applications of ML and DL.
+[NFL Big Bowl 2020](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/overview)
+[kaggle winner zoo et al] (https://www.kaggle.com/c/nfl-big-data-bowl-2020/discussion/119400)<br>
+[kaggle code by cpmpl](https://www.kaggle.com/code/cpmpml/initial-wrangling-voronoi-areas-in-python)<br>
+
+		
+## Missed something?:
+
+[Introduction](#intro)<br>
+[Performance Metrics](#performance-metrics)<br>
+[Data](#data)<br>
+[PreProcessing](#preprocessing)<br>
+[Explratory Data Analysis](#eda)<br>
+[Feature Engineering](#feature-engineering)<br>
+[Modelling](#modelling)<br>
+[Deployment](#deployment)<br>
+[Final Thoughts and Acknowledgments](#conlusion)<br>
 
 
