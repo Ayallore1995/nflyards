@@ -140,8 +140,6 @@ dtype: float64
 
 These are the steps I took to fix it. 
 
-
-
 As I noticed from the data and after doing research on the other solutions, I realised I had to standardise the directions, since sometimes the Yard lines, direction of players etc and location of play changed the data. 
 My first question was can I even standardise the direction? And will it affect the Yards variable.
 I plot the distribution of home and away and saw it basically had no difference
@@ -151,28 +149,13 @@ I plot the distribution of home and away and saw it basically had no difference
 Similarly, I standardised the X, Y and Yardline features. I checked first if changes would keep the distributions same as before. No issues.<br>
 ![image](https://user-images.githubusercontent.com/77883553/161704340-75490b87-31a6-4c2b-96c2-ba45656b84ee.png)
 
-<html>
-<style>
-details > summary {
-  padding: 4px;
-  width: 250px;
-  background-color: #eeeeee;
-  border: none;
-  box-shadow: 1px 1px 2px #bbbbbb;
-  cursor: pointer;
-}
-</style>
-<body>
-	
-<details>
-  <summary>
-    Click here for the code:
-  </summary>
-	<br>
-  {% gist f2cd7de45c81cca69fc04c151491ff89 %}
-  Why did i hide the code? It was simply too big.
-</details>
-<body>
+
+
+<br>
+[Link to code](https://gist.github.com/Ayallore1995/f2cd7de45c81cca69fc04c151491ff89)
+A snapshot<br>
+![image](https://user-images.githubusercontent.com/77883553/161735223-f0a15041-24e0-43ba-a7f9-9a13518dfbb3.png)
+<br>
 
 ### How the changes were made to standardise:
 - Changing Direction of the plays to the Left if it is right. And switching the Coordinates, orientaion and other features dependent on the Direction of Play.
