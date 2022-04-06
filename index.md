@@ -336,16 +336,9 @@ To make it interactive I converted the data into an image which showed a play at
 		
 You can try it out here [Link to my webapp ](https://nflpredictiongame.herokuapp.com/)
 
-
-![image](https://user-images.githubusercontent.com/77883553/161728042-fe58b82d-8b55-4505-892d-79ebe07d630d.png)<br>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/77883553/161728162-fd9c3660-e5c0-4191-95ca-d373111ef595.png">
-</p>
-<br>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/77883553/161728247-fc3e4a96-7ffe-4384-86d2-6bf8b72d3742.png">
-</p>
-<br>
+<video width="320" height="240" controls>
+  <source src="appdemo.mp4" type="video/mp4">
+</video> 
 I was very intimidated by all the talk about deployment for quite some time since I had no prior experince in Software Engineering, But the Internet is a wonderful place and I could figure out a way to piece information together to achieve this task.  
 		
 I had minimal experience  on how to deploy anything on Heroku , So I used the help of this video which made everything simple. Very well explained and everything worked without any issues. Highly recommend this video if you’re unsure how to deploy on Heroku. 
