@@ -44,14 +44,20 @@ It can also be used on tv to predict on live tv for the viewers, for post-game o
 So, let me summarise what we are doing. We are given 0.1 seconds of player information and we are expected to model it to find how many yards the rusher would go. Is it easy? Is it hard?
 I don’t know, Let’s find out. 
 
+### Business Constraints: 
+
+1. Model Interpretability is important for the coaching decisions and checking its effectiveness.
+2. Latency , if it is used on live tv as part of in-game graphics.
+
 ## Performance Metrics:
 
 ### 1. Continuous Ranked Probability Score.
- CRPS was the metric of Evaluation for this Kaggle competition. It makes sense once you read about this metric.
 
- Mathematically:  
+CRPS was the metric of Evaluation for this Kaggle competition. It makes sense once you read about this metric.
+
+Mathematically:  
  
- ![image](https://user-images.githubusercontent.com/77883553/161541788-a5af4f5c-8e52-4694-aa1a-fcebf2454cc7.png)
+![image](https://user-images.githubusercontent.com/77883553/161541788-a5af4f5c-8e52-4694-aa1a-fcebf2454cc7.png)
 
 I'll admit it looks scary, It is not a common metric,
 Let me explain some of the terms, first why 199? 199 is the number of buckets(classes) we have, on each play the team can either gain 99 yards, lose 99 yards or gain nothing(0th class) so thats 99+1+99= 199
@@ -76,8 +82,8 @@ so our CDF and Heaviside step function will look like
 
 ![image](https://user-images.githubusercontent.com/77883553/161543977-917be569-3a51-4008-b480-1588eea90c9d.png)
 
- Another way to understand would be that it is the mean square error (MSE)of the predicted Cumulative density function (CDF) and the true Cumulative density function (CDF). 
- The Continuous Ranked Probability Score (CRPS) generalizes the Mean Absolute Error (MAE) to the case of probabilistic forecasts. 
+Another way to understand would be that it is the mean square error (MSE)of the predicted Cumulative density function (CDF) and the true Cumulative density function (CDF). 
+The Continuous Ranked Probability Score (CRPS) generalizes the Mean Absolute Error (MAE) to the case of probabilistic forecasts. 
 
 ### 2. Mean Square error:
 
@@ -86,10 +92,6 @@ I tried to formulate it as a regression problem, but opted for CRPS since CRPS g
 As luck would have it, CRPS also gave better convergence compared to MSE. So a win-win in my books.
 
 
-### Possible Issues: 
-
-1. Model Interpretability is important for the coaching decisions and checking its effectiveness.
-2. Latency , if it is used on live tv as part of the graphics.
 
 ## Data:
 There are 682154 rows of data, and 49 columns.
