@@ -336,7 +336,7 @@ To make it interactive I converted the data into an image which showed a play at
 		
 You can try it out here [Link to my webapp ](https://nflpredictiongame.herokuapp.com/)
 <center>
-<video controls>
+<video width="500" height="350" controls>
   <source src="appdemo.mp4" type="video/mp4">
 </video> 
 </center>
